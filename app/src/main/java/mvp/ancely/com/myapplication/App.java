@@ -6,7 +6,7 @@ package mvp.ancely.com.myapplication;
  *  @文件名:   App
  *  @创建者:   fanlelong
  *  @创建时间:  2018/8/10 下午1:57
- *  @描述：    TODO
+ *  @描述：
  */
 
 import android.app.Application;
