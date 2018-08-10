@@ -11,7 +11,6 @@ package com.ancely.rxjava.mvp;
 import android.util.Log;
 
 import com.ancely.rxjava.exception.ApiException;
-import com.ancely.rxjava.ResultTransformer;
 
 import java.util.Map;
 
@@ -34,7 +33,6 @@ public class BaseModel implements IBaseModel {
     @Override
     public <T, R> void sendRequestToServer(R request, Map<String, String> map, String url, Observable<T> netObservable, int flag) {
         Observable<T> cacheObservable = Observable.create(emitter -> {
-            Log.e(TAG, "create当前线程:" + Thread.currentThread().getName());
 
             basePresenter.handlerFirstObservable(emitter, request);
 
@@ -44,7 +42,6 @@ public class BaseModel implements IBaseModel {
                 .compose(ResultTransformer.handleResult())
                 .compose(SchedulerProvider.getInstance().applySchedulers())
                 .subscribe(t -> {
-                    Log.e(TAG, "subscribe 成功:" + Thread.currentThread().getName());
 
                     basePresenter.accessSucceed(t, flag);
                     basePresenter.hanlerDataRequestSuccess(t);

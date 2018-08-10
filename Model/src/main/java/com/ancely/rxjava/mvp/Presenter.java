@@ -22,7 +22,7 @@ import io.reactivex.disposables.Disposable;
 public abstract class Presenter<T, R> implements IBasepresenter<T> {
     private IBaseModel baseModel;
     private IBaseView mvpView;
-    private static final int IS_NOT_NEED_SHOW_DIALOG = -1;
+    private static final int IS_NOT_NEED_SHOW_DIALOG = -1;//判断是否要显示和隐藏加载进度
     private CompositeDisposable mDisposable;
     private R mRequest;
 
@@ -92,12 +92,11 @@ public abstract class Presenter<T, R> implements IBasepresenter<T> {
     public abstract void hideProgress();
 
     public void handlerFirstObservable(ObservableEmitter<T> emitter, R request) {
-        Log.e("LoginPresenter", "handlerFirstObservable_P"+Thread.currentThread().getName());
+        Log.e("Presenter", "开始处理数据_P: "+Thread.currentThread().getName());
         emitter.onComplete();
     }
 
     public void hanlerDataRequestSuccess(T t) {
-        Log.e("LoginPresenter", "hanlerDataRequestSuccess"+Thread.currentThread().getName());
+        Log.e("Presenter", "返回结果给主线程: "+Thread.currentThread().getName());
     }
-
 }

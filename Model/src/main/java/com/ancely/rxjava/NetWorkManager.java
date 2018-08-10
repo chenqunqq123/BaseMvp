@@ -1,8 +1,10 @@
 package com.ancely.rxjava;
 
+import com.ancely.rxjava.okhttp.HttpLoggingInterceptor;
 import com.ancely.rxjava.okhttp.ProgressInterceptor;
 
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -35,9 +37,13 @@ public class NetWorkManager {
      * 初始化必要对象和参数
      */
     public void init(String host) {
-
+        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor("ancely:");
+        httpLoggingInterceptor.setPrintLevel(HttpLoggingInterceptor.Level.BODY);
+        httpLoggingInterceptor.setColorLevel(Level.INFO);
         // 初始化okhttp
-        mClient = new OkHttpClient.Builder().addInterceptor(new ProgressInterceptor())
+        mClient = new OkHttpClient.Builder()
+                .addInterceptor(new ProgressInterceptor())
+                .addInterceptor(httpLoggingInterceptor)
                 .readTimeout(60000, TimeUnit.MILLISECONDS)
                 .writeTimeout(60000, TimeUnit.MILLISECONDS)
                 .connectTimeout(60000, TimeUnit.MILLISECONDS)
