@@ -17,6 +17,6 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        NetWorkManager.getInstance().init("http://testsocial.vanke.com/");
+        NetWorkManager.getInstance().init("...");
     }
 }
