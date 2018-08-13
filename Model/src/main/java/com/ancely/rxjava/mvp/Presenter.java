@@ -33,15 +33,17 @@ public abstract class Presenter<T, R> implements IBasepresenter<T> {
     }
 
 
-    void addDisposable(Disposable s) {
+    @Override
+    public void disposable(Disposable s) {
         if (this.mDisposable == null) {
             this.mDisposable = new CompositeDisposable();
         }
         this.mDisposable.add(s);
     }
 
-    public void unsubscrible() {
 
+    @Override
+    public void unDisposable() {
         if (this.mDisposable != null && mDisposable.isDisposed()) {
             this.mDisposable.dispose();
             this.mDisposable = null;
@@ -92,11 +94,11 @@ public abstract class Presenter<T, R> implements IBasepresenter<T> {
     public abstract void hideProgress();
 
     public void handlerFirstObservable(ObservableEmitter<T> emitter, R request) {
-        Log.e("Presenter", "开始处理数据_P: "+Thread.currentThread().getName());
+        Log.e("Presenter", "开始处理数据_P: " + Thread.currentThread().getName());
         emitter.onComplete();
     }
 
     public void hanlerDataRequestSuccess(T t) {
-        Log.e("Presenter", "返回结果给主线程: "+Thread.currentThread().getName());
+        Log.e("Presenter", "返回结果给主线程: " + Thread.currentThread().getName());
     }
 }

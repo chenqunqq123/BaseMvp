@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements ComsumerInfoView 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mPresenter.unsubscrible();
+        mPresenter.unDisposable();
     }
 
     public void requestPermission(View view) {

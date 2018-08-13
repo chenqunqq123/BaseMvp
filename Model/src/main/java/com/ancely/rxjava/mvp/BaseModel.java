@@ -52,6 +52,6 @@ public class BaseModel implements IBaseModel {
                         basePresenter.accessError(((ApiException) throwable).getCode(), ((ApiException) throwable).getDisplayMessage(), flag);
                     }
                 });
-        basePresenter.addDisposable(subscribe);
+        basePresenter.disposable(subscribe);
     }
 }

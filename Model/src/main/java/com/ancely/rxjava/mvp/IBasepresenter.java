@@ -11,6 +11,8 @@ package com.ancely.rxjava.mvp;
 
 import java.util.Map;
 
+import io.reactivex.disposables.Disposable;
+
 public interface IBasepresenter<T> {
 
     IBaseModel getModel();
@@ -20,4 +22,8 @@ public interface IBasepresenter<T> {
     void accessSucceed(T body, int flag);
 
     void accessError(int code, String displayMessage, int flag);
+
+    void unDisposable();
+
+    void disposable(Disposable s);
 }
